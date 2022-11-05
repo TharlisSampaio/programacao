@@ -58,13 +58,6 @@ const user = {
 console.log(user)
 console.log(typeof user)
 
-// function myFunction() {
-//     const formData = new FormData(document.querySelector('form'))
-    
-//     const inputValue = formData.get("fname")
-    
-//     console.log(inputValue)
-//}
 
 // metodos de string
 const text = 'oi meu chapa'
@@ -86,3 +79,89 @@ console.log(chars)
 chars.pop()
 console.log(chars)
 
+// Object literals
+
+const product = {
+    productName: 'camisa',
+    price: 99,
+    inStock: true,
+    size: ['p','m','g'],
+    'main color': 'red'
+}
+
+console.log(product.price) // 29
+console.log(product.size[2]) // g
+console.log(product['price'])// 29
+console.log(product["main color"]) // red
+
+const {productName, price} = product
+
+console.log(productName)
+console.log(product.price)
+product.price = 39
+console.log(product.price)
+console.log(price)
+
+
+// destruturar
+let vet = [1, 2, 3 ,5 ,6 ,7]
+let [v1, v2, ...resto] = vet
+let [c, , b] =vet // ignora o 2 de vet
+console.log(v1)
+console.log(b)//3
+
+// JSON - JavaScrip Object Notation
+// XML é concorrente de JSON
+
+const dog = {
+    name: 'Scoob',
+    age: 10
+}
+console.log(dog)
+
+const dogJson = JSON.stringify(dog) // transformar o object dog em JSON
+console.log(dogJson)
+
+const dogObject = JSON.parse(dogJson) // transforma JSON em object
+console.log(dogObject)
+
+const jsonErrado = '{"primeiro":"dado", "segundo":111, "teceiro":"dado"}'
+const jsonErradoObject = JSON.parse(jsonErrado)
+console.log(jsonErradoObject)
+
+// DESAFIO 1
+//Desafio 1: Armazene 5 dados numéricos em um vetor. 
+// Em seguida, copie para um objeto com as propriedades n1, n2, n3, n4 e n5. 
+// Utilize destructuring para copiar os valores para 5 variáveis. 
+// Construa um objeto JSON com os valores das variáveis.
+
+const vectorChallenge = [77, 45, 3, 8, 123]
+
+const objectChalleng = {
+    n1: vectorChallenge[0],
+    n2: vectorChallenge[1],
+    n3: vectorChallenge[2],
+    n4: vectorChallenge[3],
+    n5: vectorChallenge[4]
+}
+
+let {n1, n2, n3, n4, n5} = objectChalleng
+
+console.log(JSON.stringify({n1, n2, n3, n4, n5}))
+
+// Desafio 2
+// Desenvolva uma calculadora que armazene em um objeto JSON o resultado das 4 operações básicas. 
+// Em outras palavras: crie um objeto calculadora, inicialize cada uma das operações da calculadora 
+// (que serão propriedades do objeto) com o resultado do processamento matemático vindo de duas 
+// variáveis e converta para um objeto JSON.
+let valor1 = 25
+let valor2 = 12
+const result = {
+    soma: valor1+valor2,
+    subt: valor1-valor2,
+    mult: valor1*valor2,
+    divisao: valor1/valor2 
+}
+
+let {soma, subtracao, mult, divisao} = result
+const resultJson = JSON.stringify({soma, subtracao, mult, divisao})
