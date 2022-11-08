@@ -165,3 +165,65 @@ const result = {
 
 let {soma, subtracao, mult, divisao} = result
 const resultJson = JSON.stringify({soma, subtracao, mult, divisao})
+
+
+//desafio 07/11/22
+const m = 5
+const o = 10
+const out = ('quinze é' + (m+o) + '\n e não' + (2*m+o) + '.')
+
+const templateLi = `quinze é ${(m+o)}
+e não ${(2*m+o)}`
+console.log(templateLi)
+
+const names = ['Paulo', 'Elias', 'Fulano', 'Fabiana']
+
+names.forEach(function(name){
+    
+    console.log(name)
+})
+
+const modifiedNames = names.map(function(name){
+    if (name == 'paulo')
+        return('Paulo Sampaio')
+    else
+        return name
+})
+
+console.log(modifiedNames)
+
+modifiedNames.forEach(function(name){
+    console.log(name)
+})
+
+const numArray = [90, 12, 33, 5, 8, 9, 0 ,3 ,6, 4, 1].filter(function(number){
+    if (number < 10)
+        return number
+})
+
+numArray.forEach(function(number){
+    console.log(number)
+})
+
+const sumArray = numArray.reduce(function(number1, number2){
+    return number2+number1
+})
+console.log(sumArray)
+
+// funcões
+function myFuntion(name, sobrenome){ // precisa de um nome (se não for anonima) e parametro e um bloco a ser executado
+    return `O nome é ${name} e o sobronome é ${sobrenome}`
+}
+const chamadaDaFuntion = myFuntion('texugo', 'mel')
+console.log(myFuntion('fulando', 'tal'))
+console.log(chamadaDaFuntion)
+
+// arrow function === função anônima
+// function (data) => {return 0;}
+
+const myArrowFunction = (a, b) => (a+b)
+
+console.log(myArrowFunction(5,5))
+
+// Desafio 07/11/22
+// () => ((x = 7) => (x + 5))
