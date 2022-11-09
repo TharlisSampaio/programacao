@@ -227,3 +227,80 @@ console.log(myArrowFunction(5,5))
 
 // Desafio 07/11/22
 // () => ((x = 7) => (x + 5))
+// function outS(){
+//     let x = 7
+//     function somXand5(){
+//         return x+5
+//     }
+//     return sumXand5()
+// }
+
+// const tesArrow = () => ((x=7), ()=>(x+5)) () SOLUÇÃO DO DESAFIO
+// console.log(tesArrow)
+
+// const namesLength = names.map(function(value){
+//     return value.length
+// })
+
+// const namesLength = names.map( value => value.length)
+
+const namesLength = names.map( ({length}) => length)
+
+console.log(namesLength)
+
+
+// Closure
+// let varX = 50
+// function out(){
+//     // let varX = 50
+//     function sumXeN(){
+//         return varX + 5
+//     }
+//     return sumXeN()
+// }
+
+
+// Orientação a objetos
+
+class Procuct{
+    constructor(name, price){
+        this.name = name
+        this.price = price
+    }
+    productDetails(){
+        return `O nome do produto é ${this.name} de preço ${this.price}`
+    }
+
+    static teste(){
+        console.log('TESTE METODO ESTATICO')
+    }
+}
+
+// instanciando um ojeto product
+const shirt = new Procuct('Camisa amarela', 39.99)
+console.log(shirt.productDetails())
+const sock = new Procuct('Meia cinza', 9.99)
+console.log(sock.productDetails())
+Procuct.teste()
+console.log(typeof shirt)
+
+// HERANÇA
+
+class Tenis extends Procuct{
+    constructor(name, price, size){
+        super(name, price)
+        this.size = size
+    }
+    showNubmer(){
+        return `o tamanho do ${this.name} é ${this.size}`
+    }
+    productDetails(){
+        return `O nome do produto é ${this.name} de preço ${this.price} e o tamanho ${this.size}`
+    }
+}
+
+const tenis = new Tenis('Adidas', 259.99, 34)
+console.log(tenis.showNubmer())
+console.log(tenis.productDetails()) // metodo da classe pai (product)
+
+console.log(shirt.productDetails())
