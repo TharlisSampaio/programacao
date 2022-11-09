@@ -304,3 +304,28 @@ console.log(tenis.showNubmer())
 console.log(tenis.productDetails()) // metodo da classe pai (product)
 
 console.log(shirt.productDetails())
+
+
+
+// DOM
+
+console.log(document.getElementById('titulo'))
+console.log(document.getElementsByClassName('text'))
+
+// apartir da atualização mais adequado
+const texts =  document.querySelectorAll('.text')
+console.log(texts)
+
+texts.forEach((data) => console.log(data))
+
+console.log(texts[0].textContent)
+texts[0].textContent = 'Estou alterando o conteudo do primeiro paragrafo'
+console.log(texts[0].textContent)
+
+texts[0].innerHTML = `<span> modificando o conteudo
+a lekleklek`
+
+texts[1].style.backgroundColor = 'red'
+
+const button = document.querySelectorAll('#btn')
+button.addEventListener('click',() => (texts[3].style.backgroundColor = 'red'))
