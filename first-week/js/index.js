@@ -327,5 +327,12 @@ a lekleklek`
 
 texts[1].style.backgroundColor = 'red'
 
-const button = document.querySelectorAll('#btn')
+const button = document.querySelector('#btn')
 button.addEventListener('click',() => (texts[3].style.backgroundColor = 'red'))
+
+
+// Callbacks
+
+// promises
+
+//programação assícrona
