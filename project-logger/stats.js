@@ -14,11 +14,14 @@ setInterval( () => {
         'total': `${total} MB`,
         'freeMem': `${freeMem} MB`,
         'porcent': `${percent}% em uso`,
-        'data': `${date.getDay()}`
+        'data': `dia: ${date.getDay()} do mês ${date.getMonth()} ano ${date.getFullYear()}`,
+        'hora': `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
     }
     console.clear()
     console.table(status)
 
+
+    //
     log('Rodando...\n', JSON.stringify(status)+'\n')
 
 }, 1000)
