@@ -15,13 +15,27 @@ http.createServer((req, res) => {
 
     // Mostrar o conteúdo do JSON.
     if (!name || !url)
-        return res.end('show')
-
+    return res.end(JSON.stringify(data))
+    
     // Delete - apagar do JSON.
     if (del) {
-        return res.end('delete')
+        data.urls = data.urls.filter(item => item.url != url)
+        return writeFile(message => res.end(message))
     }
+    
+    function writeFile(cb){
+        fs.writeFile(
+            path.join(__dirname, 'urls.json'),
+            JSON.stringify(data, null, 2),
+            err => {
+                if(err) throw err 
+                cb('Operação realizada com sucesso!')
+            }
+        )
 
-    return res.end('create')
+    }
+    
+    data.urls.push({name, url})
+    return writeFile(message => res.end(message))
 
 }).listen(3000, () => console.log('Api is running.'))
