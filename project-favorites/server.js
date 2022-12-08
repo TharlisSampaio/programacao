@@ -2,27 +2,33 @@ const http = require('http')
 const path = require('path')
 const fs = require('fs')
 
-
-//crinado router
-http.createServer((request, reponse)=>{
+http.createServer((req, res)=>{
     
-    const file = request.url === '/' ? 'index.html' : request.url
-    const filePath = path.join(__dirname, 'public', file)
-    // pegando as extensão do documento
+    // as rotas da aplicação foram definidas de maneira dinâmica
+    const file = req.url === '/' ? 'index.html' : req.url
+    const filePath = path.join(__dirname,'public',file)
+    
+    // pegando a extensão do arquivo
     const extname = path.extname(filePath)
-    // vetor com as extensõe permitidas
-    const allowedFileTypes = ['.thml', '.js', '.css']
 
-    const allowed = allowedFileTypes.find((item) => item == extname)
+    // criando um vetor com as extensões esperadas
+    const allowedFileTypes = ['.html', '.js', '.css']
 
+    // varrendo o vetor de extensões permitidas para tentar encontrar algum arquivo com extensão diferente das esperadas 
+    const allowed = allowedFileTypes.find(
+        (item) => item === extname 
+    )
+
+    // se encontrou uma extensão não esperada, retorna, somente para não travar a aplicação
     if(!allowed) return
 
+
     fs.readFile(
-        path.join(__dirname, 'public','index.html'),
+        filePath,
         (err, content) => {
-            if(err) throw err
-            reponse.end(content)
+            if (err) throw err
+            res.end(content)
         }
     )
 
-}).listen(5000,()=> (console.log('servidor rodando.......')))
+}).listen(5000, () => (console.log('Servidor rodando...')))
