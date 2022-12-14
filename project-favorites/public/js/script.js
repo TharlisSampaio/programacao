@@ -4,10 +4,20 @@ const form = document.querySelector('form')
 
 // Função que carrega o conteúdo da API.
 async function load(){
-    
+    const res = await fetch('http://localhost:3000').then(data => data.json())
+    res.urls.map(({name,url}) => addElement({name,url}))
 }
 
 load()
+
+async function create({name, url}){
+    const addUrl = `http://localhost:3000?name=${name}&url=${url}`;
+    await fetch(addUrl)
+}
+async function deleteUrl({name, url}){
+    const delUrl = `http://localhost:3000?name=${name}&url=${url}&del=true`;
+    await fetch(delUrl)
+}
 
 function addElement({ name, url }) {
     
@@ -20,16 +30,18 @@ function addElement({ name, url }) {
     a.target = "_blank"
 
     trash.innerHTML = "x"
-    trash.onclick = () => removeElement(trash)
+    trash.onclick = () => removeElement(trash, {name, url})
 
     li.append(a)
     li.append(trash)
     ul.append(li)
+
 }
 
-function removeElement(el) {
+function removeElement(el, {name, url}) {
     if (confirm('Tem certeza que deseja deletar?'))
         el.parentNode.remove()
+        deleteUrl({name,url})
 }
 
 form.addEventListener('submit', (event) => {
@@ -48,10 +60,8 @@ form.addEventListener('submit', (event) => {
     if (!/^http/.test(url))
         return alert('Digite a url da maneira correta.')
     
-    addUrl()
+    create({name, url})
 
-    // const a = fetch('http://localhost:3000/').then(dado => dado.json())
-    // a.addElement(name, url)
     addElement({ name, url })
 
     input.value = ''
